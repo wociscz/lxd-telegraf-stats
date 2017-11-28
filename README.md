@@ -72,3 +72,10 @@ lxd,type=master,metric=containers running=5,total=6,stopped=1,notrunning=1
 !!!                                       :wq                                       !!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ```
+
+ScreenShot: 
+
+![alt text][screenshot]
+
+[screenshot]: https://raw.githubusercontent.com/wociscz/lxd-telegraf-stats/master/screenshots/Screenshot-2017-11-24%20Grafana%20-%20Instance%20detail.png "Instance Detail"
+
