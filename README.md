@@ -15,6 +15,7 @@ I'm testing this on Ubuntu LTS 16.04 with LXD version 2.20-0ubuntu4~16.04.1~ppa1
 
 
 Howto make it work (ubuntu server, for other distro use appropriate tools):
+
 0) install lxd server https://linuxcontainers.org/lxd/introduction/
 0.1) i have spotted that this script not working with snap version of LXD - use PPA or Backports
 1) install telegraf https://docs.influxdata.com/telegraf/v1.4/introduction/installation/
@@ -27,7 +28,7 @@ Howto make it work (ubuntu server, for other distro use appropriate tools):
 7) copy lxd-telegraf-stats.py to /usr/local/sbin/ and chmod +x it.
 8) install additional python modules: apt-get install python-ws4py python-pylxd (maybe others? look at errors if something missing)
 9) try to run script - output should be like: 
-'''
+
 /usr/local/sbin/lxd-telegraf-stats.py
 lxd,type=container,hostname=master-666,name=master,instance=666,metric=status running=1,processes=27,cpuprio=1024,hddprio=500
 lxd,type=container,hostname=master-666,name=master,instance=666,metric=mem usage=64884736,usage_pct=3,limit=2147483648,peak=67051520
@@ -55,7 +56,7 @@ lxd,type=master,metric=other live=1
 lxd,type=master,metric=hdd total=1990116046274,given=2033065719234,used=316979200,given_pct=102,used_pct=0
 lxd,type=master,metric=cpu given=24,total=16
 lxd,type=master,metric=containers running=5,total=6,stopped=1,notrunning=1
-'''
+
 10) restart telegraf: systemctl restart telegraf.service (you should test the gathering with telegraf --test command)
 11) login to your grafana and import attached dashboards from grafana_dashboards
 12) edit/tweak settings to make it work
