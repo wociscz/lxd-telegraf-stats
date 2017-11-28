@@ -1,0 +1,1 @@
+telegraf ALL = NOPASSWD: /usr/local/sbin/lxd-telegraf-stats.py
