@@ -241,9 +241,9 @@ for container in client.containers.all():
       except:
         pass
   
-    if os.path.exists('/sys/fs/cgroup/blkio/lxc/%s/blkio.throttle.io_service_bytes' % cn):
+    if os.path.exists('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.throttle.io_service_bytes' % cn):
       try:
-        with open('/sys/fs/cgroup/blkio/lxc/%s/blkio.throttle.io_service_bytes' % cn, 'rt') as cgfile:
+        with open('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.throttle.io_service_bytes' % cn, 'rt') as cgfile:
           for line in cgfile.readlines():
             if "Read" in line:
               #device = ask_sysfs(line.split()[0])
