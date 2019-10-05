@@ -197,13 +197,14 @@ for container in client.containers.all():
 
   # cgroup metrics - read them only when container is running
   if lxdmetrics[cn]['running'] == 1:
+    lxdmetrics[cn]['cpuprio'] = 0
     if os.path.exists('/sys/fs/cgroup/cpu,cpuacct/lxc.monitor/%s/cpu.shares' % cn):
       try:
         with open('/sys/fs/cgroup/cpu,cpuacct/lxc.monitor/%s/cpu.shares' % cn, 'rt') as cgfile:
           lxdmetrics[cn]['cpuprio'] = int(cgfile.read())
       except:
         pass
-  
+    lxdmetrics[cn]['hddprio'] = 0
     if os.path.exists('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.weight' % cn):
       try:
         with open('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.weight' % cn, 'rt') as cgfile:
