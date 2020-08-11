@@ -197,24 +197,23 @@ for container in client.containers.all():
 
   # cgroup metrics - read them only when container is running
   if lxdmetrics[cn]['running'] == 1:
-    lxdmetrics[cn]['cpuprio'] = 0
-    if os.path.exists('/sys/fs/cgroup/cpu,cpuacct/lxc.monitor/%s/cpu.shares' % cn):
+    if os.path.exists('/sys/fs/cgroup/cpu,cpuacct/lxc.monitor.%s/cpu.shares' % cn):
       try:
-        with open('/sys/fs/cgroup/cpu,cpuacct/lxc.monitor/%s/cpu.shares' % cn, 'rt') as cgfile:
+        with open('/sys/fs/cgroup/cpu,cpuacct/lxc.monitor.%s/cpu.shares' % cn, 'rt') as cgfile:
           lxdmetrics[cn]['cpuprio'] = int(cgfile.read())
       except:
         pass
-    lxdmetrics[cn]['hddprio'] = 0
-    if os.path.exists('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.weight' % cn):
+  
+    if os.path.exists('/sys/fs/cgroup/blkio/lxc.payload.%s/blkio.weight' % cn):
       try:
-        with open('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.weight' % cn, 'rt') as cgfile:
+        with open('/sys/fs/cgroup/blkio/lxc.payload.%s/blkio.weight' % cn, 'rt') as cgfile:
           lxdmetrics[cn]['hddprio'] = int(cgfile.read())
       except:
         pass
 
-    if os.path.exists('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.throttle.io_serviced' % cn):
+    if os.path.exists('/sys/fs/cgroup/blkio/lxc.payload.%s/blkio.throttle.io_serviced' % cn):
       try:
-        with open('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.throttle.io_serviced' % cn, 'rt') as cgfile:
+        with open('/sys/fs/cgroup/blkio/lxc.payload.%s/blkio.throttle.io_serviced' % cn, 'rt') as cgfile:
           for line in cgfile.readlines():
             # sum every read or write occuring
             if "Read" in line:
@@ -241,9 +240,9 @@ for container in client.containers.all():
       except:
         pass
   
-    if os.path.exists('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.throttle.io_service_bytes' % cn):
+    if os.path.exists('/sys/fs/cgroup/blkio/lxc.payload.%s/blkio.throttle.io_service_bytes' % cn):
       try:
-        with open('/sys/fs/cgroup/blkio/lxc.payload/%s/blkio.throttle.io_service_bytes' % cn, 'rt') as cgfile:
+        with open('/sys/fs/cgroup/blkio/lxc.payload.%s/blkio.throttle.io_service_bytes' % cn, 'rt') as cgfile:
           for line in cgfile.readlines():
             if "Read" in line:
               #device = ask_sysfs(line.split()[0])
