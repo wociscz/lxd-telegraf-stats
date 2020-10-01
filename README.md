@@ -7,12 +7,8 @@ influxdb (and/or another metricsdb, based on telegraf configuration).
 
 grafana_dashboards contains example dashbords which using gathered metrics.
 
-
-This is still WORK IN PROGRESS (or proof of concept maybe).
-
-
-I'm testing this on Ubuntu LTS 16.04 with LXD version `2.20-0ubuntu4~16.04.1~ppa1`, kernel `4.10.0-40-generic`.
-
+Tested on Ubuntu LTS 16.04 with LXD version `2.20-0ubuntu4~16.04.1~ppa1` (python `2.7`, kernel `4.10.0-40-generic`)
+Newly created `python3` branch have python3 version of script which was tested on Ubuntu LTS 20.04 with snap LXD version `4.0.3` (python `3.8.2`, kernel `5.4.0-47-generic`)
 
 Howto make it work (ubuntu server, for other distro use appropriate tools):
 
@@ -24,7 +20,7 @@ Howto make it work (ubuntu server, for other distro use appropriate tools):
 5. copy lxd.conf to /etc/telegraf/telegraf.d/
 6. copy sudoers telegraf to /etc/sudoers.d/
 7. copy lxd-telegraf-stats.py to /usr/local/sbin/ and chmod +x it.
-8. install additional python modules: apt-get install python-ws4py python-pylxd (maybe others? look at errors if something missing)
+8. install additional python modules: `apt-get install python-ws4py python-pylxd` or via pip(3) `pip(3) install ws4py pylxd` 
 9. try to run script - output should be like: 
 ```
 /usr/local/sbin/lxd-telegraf-stats.py
@@ -60,18 +56,6 @@ lxd,type=master,metric=containers running=5,total=6,stopped=1,notrunning=1
 12. edit/tweak settings to make it work
 13. do not let your eyeballs pop out!
 14. maybe i'm missed something, so look at your logs if something went wrong.
-
-
-
-```
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!                                   DISCLAIMER:                                   !!!
-!!! I'm not a programmer - so .py script is probably very ugly - you've been warned !!!
-!!!      No (or almost no) sanity checks, ugly written (can't to call it) code      !!!
-!!!    I'm not responsible for any eyeball explosion, use this on your own risk     !!!
-!!!                                       :wq                                       !!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-```
 
 ScreenShot: 
 
